@@ -28,6 +28,7 @@ namespace SehirRehberi.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<DataContext>();
+            services.AddScoped<IAppRepository, AppRepository>();
             
         }
 
