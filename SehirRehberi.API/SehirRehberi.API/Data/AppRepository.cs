@@ -20,14 +20,12 @@ namespace SehirRehberi.API.Data
         {
             var AddedEntry = _DataContext.Entry(entity);
             AddedEntry.State =EntityState.Added;
-            _DataContext.SaveChanges();
         }
 
         public void Delete<TEntity>(TEntity entity) where TEntity : class
         {
             var deletedEntry = _DataContext.Entry(entity);
             deletedEntry.State = EntityState.Deleted;
-            _DataContext.SaveChanges();
         }
 
         public List<City> GetCities()
@@ -38,7 +36,7 @@ namespace SehirRehberi.API.Data
 
         public City GetCityById(int cityID)
         {
-            var city = _DataContext.Cities.Include(p => p.Photos).FirstOrDefault(c => c.CityID == cityID);
+            var city = _DataContext.Cities.Include(p => p.Photos).FirstOrDefault(c => c.ID == cityID);
             return city;
         }
 
