@@ -35,6 +35,9 @@ namespace SehirRehberi.API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IAppRepository, AppRepository>();
+            
+                            services.AddScoped<IAuthRepository, AuthRepository>();
+
             //Standar jwt yazımı
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
