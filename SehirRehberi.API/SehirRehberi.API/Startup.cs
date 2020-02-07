@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SehirRehberi.API.Data;
 using System.Text;
+using CloudinaryDotNet;
+using SehirRehberi.API.Helpers;
 
 namespace SehirRehberi.API
 {
@@ -25,6 +27,10 @@ namespace SehirRehberi.API
         {
             //Appsettings deki keyimizi alıyoruz key değişkenimiz içerisine
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("appsettings:Token").Value);
+
+            //Appsettings den gerekli veriyi çekebiliyoruz
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(opt =>
 
             {
@@ -35,8 +41,8 @@ namespace SehirRehberi.API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IAppRepository, AppRepository>();
-            
-                            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+
 
             //Standar jwt yazımı
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
