@@ -31,7 +31,7 @@ namespace SehirRehberi.API.Data
 
         private bool VeriyfPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using (var hmac = new HMACSHA512())
+            using (var hmac = new HMACSHA512(passwordSalt))
             {
                 //gelen kullanıcı değerini ve girilen password değerini hashle karşılaştırıp doğruysa girişi sağlıyoruz
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));

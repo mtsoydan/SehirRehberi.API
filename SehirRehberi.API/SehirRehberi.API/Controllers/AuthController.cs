@@ -21,7 +21,6 @@ namespace SehirRehberi.API.Controllers
     {
         private IAuthRepository _authRepository;
         private IConfiguration _configuration;
-        private object encoding;
 
         public AuthController(IAuthRepository authRepository, IConfiguration configuration)
         {
@@ -74,7 +73,7 @@ namespace SehirRehberi.API.Controllers
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     //İçerisine gerekli kullanıcı bilgilerini gömdük
-                    new Claim (ClaimTypes.NameIdentifier,user.UserID.ToString()),
+                    new Claim (ClaimTypes.NameIdentifier,user.Id.ToString()),
                     new Claim (ClaimTypes.Name, user.UserName)
                 }),
                 Expires = DateTime.Now.AddDays(1),//token geçerlilik süresi
